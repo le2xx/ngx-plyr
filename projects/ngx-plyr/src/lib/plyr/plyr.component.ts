@@ -1,9 +1,24 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, NgZone, OnChanges, OnDestroy, Output, Renderer2, SimpleChange, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  NgZone,
+  OnChanges,
+  OnDestroy,
+  Output, PLATFORM_ID,
+  Renderer2,
+  SimpleChange,
+  ViewChild
+} from '@angular/core';
 import * as Plyr from '@le2xx/plyr';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { filter, first, switchMap } from 'rxjs/operators';
 import { DefaultPlyrDriver } from '../plyr-driver/default-plyr-driver';
 import { PlyrDriver } from '../plyr-driver/plyr-driver';
+import { isPlatformServer } from '@angular/common';
 
 @Component({
   selector: 'plyr, [plyr]', // tslint:disable-line
@@ -85,12 +100,15 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
   private driver: PlyrDriver;
 
   private videoElement: HTMLVideoElement;
+  private isServer: boolean;
 
   constructor(
     private elementRef: ElementRef<HTMLDivElement>,
     private ngZone: NgZone,
     private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
+    this.isServer = isPlatformServer(this.platformId);
   }
 
   ngOnChanges(changes: { [p in keyof PlyrComponent]?: SimpleChange; }) {
@@ -117,7 +135,7 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   private initPlyr(force = false) {
-    if (force || !this.player) {
+    if (force || !this.player || !this.isServer) {
       this.ngZone.runOutsideAngular(() => {
         this.destroyPlayer();
 
