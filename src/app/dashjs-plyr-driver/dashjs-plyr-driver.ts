@@ -1,5 +1,5 @@
 import 'dashjs/dist/dash.all.min.js';
-import * as Plyr from 'plyr';
+import * as Plyr from '@le2xx/plyr';
 import {
   PlyrDriver,
   PlyrDriverCreateParams, PlyrDriverDestroyParams,

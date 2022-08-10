@@ -1,5 +1,5 @@
 import * as Hls from 'hls.js';
-import * as Plyr from 'plyr';
+import * as Plyr from '@le2xx/plyr';
 import {
   PlyrDriver,
   PlyrDriverCreateParams, PlyrDriverDestroyParams,

@@ -1,4 +1,4 @@
-import * as Plyr from 'plyr';
+import * as Plyr from '@le2xx/plyr';
 import { PlyrDriver, PlyrDriverCreateParams, PlyrDriverDestroyParams, PlyrDriverUpdateSourceParams } from './plyr-driver';
 
 export class DefaultPlyrDriver implements PlyrDriver {

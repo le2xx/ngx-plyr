@@ -30,7 +30,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
-              "node_modules/plyr/dist/plyr.css"
+              "node_modules/@le2xx/plyr/dist/plyr.css"
             ],
             "scripts": []
           },
