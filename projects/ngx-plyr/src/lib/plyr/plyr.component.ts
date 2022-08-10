@@ -3,7 +3,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  Inject,
+  Inject, Injectable,
   Input,
   NgZone,
   OnChanges,
@@ -18,7 +18,7 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { filter, first, switchMap } from 'rxjs/operators';
 import { DefaultPlyrDriver } from '../plyr-driver/default-plyr-driver';
 import { PlyrDriver } from '../plyr-driver/plyr-driver';
-import { isPlatformServer } from '@angular/common';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 
 @Component({
   selector: 'plyr, [plyr]', // tslint:disable-line
@@ -100,14 +100,17 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
   private driver: PlyrDriver;
 
   private videoElement: HTMLVideoElement;
+
   private isServer: boolean;
+  private readonly isBrowser: boolean;
 
   constructor(
     private elementRef: ElementRef<HTMLDivElement>,
     private ngZone: NgZone,
     private renderer: Renderer2,
-    @Inject(PLATFORM_ID) private platformId: object
+    @Inject(PLATFORM_ID) private platformId
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.isServer = isPlatformServer(this.platformId);
   }
 
@@ -135,7 +138,7 @@ export class PlyrComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   private initPlyr(force = false) {
-    if (force || !this.player || !this.isServer) {
+    if ((force || !this.player) && this.isBrowser) {
       this.ngZone.runOutsideAngular(() => {
         this.destroyPlayer();
 
