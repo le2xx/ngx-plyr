@@ -1,6 +1,6 @@
 {
   "name": "@le2xx/ngx-plyr",
-  "version": "10.0.2",
+  "version": "10.0.3",
   "keywords": [
     "ngx-plyr",
     "ng-plyr",
@@ -19,7 +19,7 @@
   "peerDependencies": {
     "@angular/common": ">=8.0.0",
     "@angular/core": ">=8.0.0",
-    "@le2xx/plyr": "^3.7.2"
+    "@le2xx/plyr": ">=3.7.2"
   },
   "publishConfig": {
     "access": "public"
