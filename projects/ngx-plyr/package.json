@@ -1,5 +1,5 @@
 {
-  "name": "ngx-plyr",
+  "name": "@le2xx/ngx-plyr",
   "keywords": [
     "ngx-plyr",
     "ng-plyr",
@@ -9,11 +9,11 @@
     "video",
     "audio"
   ],
-  "author": "smnbbrv",
+  "author": "smnbbrv, le2xx",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/smnbbrv/ngx-plyr"
+    "url": "https://github.com/le2xx/ngx-plyr"
   },
   "peerDependencies": {
     "@angular/common": ">=8.0.0",
